@@ -38,6 +38,7 @@ function App() {
   ]);
 
   const nextId = useRef(4);
+
   const onCreate = () => {
     const user = {
       id: nextId.current,
@@ -54,7 +55,13 @@ function App() {
       email: ''
     });
     nextId.current += 1;
-  }
+  };
+
+  const onRemove = (id) => {
+    // user.id가 파라미터로 일치하지 않는 원소만 추출하여 새로운 배열을 만든다
+    // = user.id가 id 인 것을 제거함
+    setUsers(users.filter(user => user.id !== id));
+  };
 
   return (
     <>
@@ -64,7 +71,7 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} />
+      <UserList users={users} onRemove={onRemove} />
     </>
   );
 }
