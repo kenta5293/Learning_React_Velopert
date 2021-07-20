@@ -1,13 +1,13 @@
 import React from 'react';
-import Counter from './components/Counter';
+import InputSample from './components/InputSample';
 import './App.css';
 
 function App() {
   return (
     <>
-      <Counter />
+      <InputSample />
     </>
-  )
+  );
 }
 
 export default App;
