@@ -1,11 +1,11 @@
 import React from 'react';
-import InputSample from './components/InputSample';
+import UserList from './components/UserList';
 import './App.css';
 
 function App() {
   return (
     <>
-      <InputSample />
+      <UserList />
     </>
   );
 }
