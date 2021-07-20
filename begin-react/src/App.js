@@ -8,7 +8,8 @@ function App() {
   return (
     <>
       <Wrapper>
-        <Hello name="react" color="#B64A3D" />
+        {/* props의 이름만 작성하고 값 설정을 생략하면 true로 설정한 것으로 간주된다 */}
+        <Hello name="react" color="#B64A3D" isSpecial />
         <Hello color="#DD8F5F" />
       </Wrapper>
     </>
