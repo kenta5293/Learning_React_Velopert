@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 function User({ user, onRemove, onToggle }) {
 
-  useEffect(() => {
-    console.log(user);
-  });
+  // useEffect(() => {
+  //   console.log(user);
+  // });
 
   /*
     useEffect의 첫번째 파라미터로는 함수, 두번째에는 의존값이 있는 배열(deps)을 넣는다.
@@ -48,7 +48,7 @@ function UserList({ users, onRemove, onToggle }) {
 export default UserList;
 
 /*
-  <주로 마운트 시 하는 작업들>
+  <주로 마운트 시 하는 작업들> / [ componentDidmount ]
   · props 로 받은 값을 컴포넌트의 로컬 상태로 설정.
   · 외부 API 요청. (REST API 등...)
   · 라이브러리의 사용. (D3, Video.js 등...)
