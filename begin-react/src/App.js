@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import UserList from './components/UserList';
 import CreateUser from './components/CreateUser';
 import './App.css';
@@ -47,7 +47,7 @@ function App() {
 
   const nextId = useRef(4);
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
     const user = {
       id: nextId.current,
       username,
@@ -63,25 +63,28 @@ function App() {
       email: ''
     });
     nextId.current += 1;
-  };
+  });
 
-  const onRemove = (id) => {
+  const onRemove = useCallback((id) => {
     // user.id가 파라미터로 일치하지 않는 원소만 추출하여 새로운 배열을 만든다
     // = user.id가 id 인 것을 제거함
     setUsers(users.filter(user => user.id !== id));
-  };
+  }, [users]);
 
-  const onToggle = (id) => {
+  const onToggle = useCallback((id) => {
     setUsers(
       users.map(user =>
         user.id === id ? { ...user, active: !user.active } : user
       )
     );
-  };
+  }, [users]);
 
   const count = useMemo(() => countActiveUsers(users), [users]);
 
   /*
+    useMemo는 이전에 연산한 값이 바뀔때만 실행시켜주어,
+    성능 최적화를 해야하는 환경에서 사용된다.
+
     useMemo의 첫번째 파라미터에는 어떻게 연산할 지 정의하는 함수가 들어간다.
     두번째 파라미터에는 deps 배열을 넣어주는데 해당 배열 안의 값이 바뀐다면,
     첫번째 파라미터 속 함수를 호출하여 값을 갱신하고,
