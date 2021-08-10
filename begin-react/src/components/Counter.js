@@ -1,16 +1,25 @@
-// 리액트 패키지에서 useState라는 함수를 불러옴
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
 
 function Counter() {
-  // 상태의 기본값을 파라미터로 넣어 호출
-  const [number, setNumber] = useState(0);
+  const [number, dispatch] = useReducer(reducer, 0);
 
   const onIncrease = () => {
-    setNumber(prevNumber => prevNumber + 1);
+    dispatch({ type: 'INCREMENT' });
   }
 
   const onDecrease = () => {
-    setNumber(prevNumber => prevNumber - 1);
+    dispatch({ type: 'DECREMENT' });
   }
 
   return (
